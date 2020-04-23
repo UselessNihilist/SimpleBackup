@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.exolius.simplebackup</groupId>
 	<artifactId>simplebackup</artifactId>
-	<version>1.9.1</version>
+	<version>1.9.2</version>
 
 	<name>SimpleBackupReloaded</name>
 

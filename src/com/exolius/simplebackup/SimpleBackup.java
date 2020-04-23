@@ -30,6 +30,7 @@ public class SimpleBackup extends JavaPlugin {
     private boolean broadcast = true;
     private boolean disableZipping = false;
     private boolean backupEmpty = false;
+	private boolean hasSkipped = false;
     private boolean selfPromotion = false;
 
     private String message = "[SimpleBackup]";
@@ -86,8 +87,11 @@ public class SimpleBackup extends JavaPlugin {
 			    // When the task is run, start the map backup
 			    if (SimpleBackup.this.backupEmpty || Bukkit.getServer().getOnlinePlayers().size() > 0 || SimpleBackup.this.loginListener.someoneWasOnline()) {
 			        SimpleBackup.this.doBackup();
-			    } else {
+					hasSkipped = false;
+			    } else if (!hasSkipped) {
+				//Only notify once if the backup fails in this way
 			        SimpleBackup.this.getLogger().info("Skipping backup (no one was online)");
+					hasSkipped = true;
 			    }
 			}, delay, ticks);
             this.getLogger().info("Backup scheduled starting in " + delay / 72000. + " hours, repeat interval: " + this.interval + " hours");
